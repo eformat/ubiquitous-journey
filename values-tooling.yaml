@@ -10,9 +10,9 @@ applications:
     - apps/nexus/values.yaml
   - name: jenkins
     enabled: true 
-    source: https://github.com/rht-labs/ubiquitous-journey
+    source: https://github.com/eformat/ubiquitous-journey
     source_path: charts/ubiquitous-journey
-    source_ref: master
+    source_ref: feature/testing
     sync_policy_automated: true
     valueFiles:
     - apps/jenkins/values.yaml
