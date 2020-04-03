@@ -14,7 +14,7 @@ spec:
     server: {{ $app.cluster_api | default "https://kubernetes.default.svc" }}
   project: {{ $app.project | default "default" }}
   source:
-{{- if not $app.no_helm }}  
+{{- if not $app.kustomize }}  
     helm:
       releaseName: {{ $app.name }}
 {{- if $app.helm_values }}
