@@ -5,9 +5,9 @@
 
 bootstrap-project:
   enabled: true
-  ci_cd_namespace: &ci_cd "my-ci-cd"
-  dev_namespace: &dev "my-dev"
-  test_namespace: &test "my-test"
+  ci_cd_namespace: &ci_cd "labs-ci-cd"
+  dev_namespace: &dev "labs-dev"
+  test_namespace: &test "labs-test"
   namespaces:
   - name: *ci_cd
     bindings:
@@ -56,4 +56,4 @@ argocd:
   enabled: true
   namespace: *ci_cd
   version: v1.5.1
-  instancelabel: redhat.com/ubiquitous-journey
+  instancelabel: redhat.com/labs-stuff
