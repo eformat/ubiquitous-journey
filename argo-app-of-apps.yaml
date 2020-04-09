@@ -6,18 +6,18 @@ applications:
   - name: labs-devex
     destination: labs-ci-cd
     enabled: true
-    source: https://github.com/rht-labs/ubiquitous-journey.git
+    source: https://github.com/eformat/ubiquitous-journey.git
     source_path: ubiquitous-journey/
-    source_ref: master
+    source_ref: testing/namespaces
     sync_policy_automated: false
     helm_values:
       - values-tooling.yaml
   - name: example-deployment
     destination: labs-ci-cd
     enabled: false
-    source: https://github.com/rht-labs/ubiquitous-journey.git
+    source: https://github.com/eformat/ubiquitous-journey.git
     source_path: example-deployment
-    source_ref: "master"
+    source_ref: testing/namespaces
     sync_policy_automated: true
     helm_values:
       - values-applications.yaml
