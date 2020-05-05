@@ -33,7 +33,9 @@ OpenShift4 is evolving support for helm3. Unfortunately, there is no current way
 
 We currently have argocd managing helm charts. Helm does not mandate the use of helm chart repositories i.e. it is possible to reference a helm Chart directly from git.
 
-However, to see helm charts in OpenShift4 UI as well as use helm from the command line to interact with those charts, you need to use a chart repository.
+Helm Best practices suggest using a chart repository - especially when going between environments is advisable. It is worth comparing the approaches.
+
+- [ ] // FIXME - We need an updated helm chart nexus version (current 3.19.1-01 -> 3.22.1-02), newer version (which breaks with kube plugin for pwd). Note the current nexus also does not deploy the `labs-static` raw from ConfigMap as it should.
 
 So, the `pet-battle-api` workflow uses helm chart repository in nexus as follows:
 
@@ -72,7 +74,7 @@ Chart:
 
 I'm currently playing with versioning. It seems most obvious to change the `appVersion` when we build a new image.
 
-The Chart version - could remain static, although we have have seen chart cache issues, currently am hacking this
+The Chart version - could remain static, although we have have seen chart cache issues, currently am hacking this:
 
 - [ ] // FIXME ${SEM_VER} generation is required for Chart::version, appVersion can be a string
 
