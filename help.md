@@ -24,15 +24,33 @@ $ argocd account generate-token --account admin
 
 ## Helm Charts, Versioning, ArgoCD Applications
 
+Example `Jenkinsfile` - https://github.com/eformat/pet-battle-api/blob/test/jenkins/Jenkinsfile
+
 - [ ] As a developer, i wish to use Jenkins Multibranch Pipeline plugin for my gitops workflow.
 - [ ] As a developer, i wish to practice Trunk Based development with short lived feature or fix branches within my application teams.
+
+OpenShift4 is evolving support for helm3. Unfortunately, there is no current way to store Charts in the internal registry (other than using the helm operator approach). Quay has experimental support for helm charts.
+
+We currently have argocd managing helm charts. Helm does not mandate the use of helm chart repositories i.e. it is possible to reference a helm Chart directly from git.
+
+However, to see helm charts in OpenShift4 UI as well as use helm from the command line to interact with those charts, you need to use a chart repository.
+
+So, the `pet-battle-api` workflow uses helm chart repository in nexus as follows:
+
+1. perpare environment - sets env variables based on branch
+2. creates argocd app - uses inline yaml for now rather than argocd cli, as we need ignoreDifferences set
+3. builds the app - builds a quarkus thin jar using a mvn slave in this case (mvn 3.6, jdk11) and stores the resulting built artifacts in the nexus raw repo as tgz
+4. openshift binary build to containerize application - uses ubi8, jdk11 as base image, combines thin jar, libs (native build could also be used but java.io/image libs not part or quarkus yet)
+5. git commits chart and values with updates versions - git commit to branch
+6. uploads the helm chart to nexus helm repository
+7. syncs the argocd application using the updated helm chart
 
 To support developing and building application Charts in the same namespace, we can use the helm `Release` name to map to our git branch. For example where `foo` is the release name:
 ```bash
 helm template --name-template=foo ...
 helm install foo ...
 ```
-A real life example of two Releases of the same chart in the same namespace:
+A real life example of two Releases of the same chart in the same namespace can be tested using:
 ```bash
 helm template --name-template=foo -f chart/values.yaml chart | oc apply -f- --dry-run --validate
 helm template --name-template=bar -f chart/values.yaml chart | oc apply -f- --dry-run --validate
@@ -45,14 +63,20 @@ In argocd the release name is specified as:
       releaseName: {{ $app.name }}
 ```
 
-In Helm, there is an (optional) `appVersion` and a chart version - so they app and chart can be versioned separately.
+In Helm, there is an (optional) `appVersion` and a chart version - so the app and chart can be versioned separately if desired.
 ```yaml
 Chart:
   version: 0.0.1       # the chart specific version
   appVersion: latest   # the application version
 ```
 
-We will use the `appVersion` and link it to the main application version, preferably the image stream tag name:
+I'm currently playing with versioning. It seems most obvious to change the `appVersion` when we build a new image.
+
+The Chart version - could remain static, although we have have seen chart cache issues, currently am hacking this
+
+- [ ] // FIXME ${SEM_VER} generation is required for Chart::version, appVersion can be a string
+
+I'm using the `appVersion` and linking it to the main application image version, via an image stream tag name:
 ```yaml
   tags:
     - name: {{ .Chart.AppVersion }}
