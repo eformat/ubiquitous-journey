@@ -37,7 +37,7 @@ Helm Best practices suggest using a chart repository - especially when going bet
 
 - [ ] // FIXME - We need an updated helm chart nexus version (current 3.19.1-01 -> 3.22.1-02), newer version (which breaks with kube plugin for pwd). Note the current nexus also does not deploy the `labs-static` raw from ConfigMap as it should.
 
-So, the `pet-battle-api` workflow uses helm chart repository in nexus as follows:
+So, an example workflow for `pet-battle-api` uses a helm chart repository in nexus as follows:
 
 1. perpare environment - sets env variables based on branch
 2. creates argocd app - uses inline yaml for now rather than argocd cli, as we need ignoreDifferences set
@@ -47,18 +47,20 @@ So, the `pet-battle-api` workflow uses helm chart repository in nexus as follows
 6. uploads the helm chart to nexus helm repository
 7. syncs the argocd application using the updated helm chart
 
-To support developing and building application Charts in the same namespace, we can use the helm `Release` name to map to our git branch. For example where `foo` is the release name:
+To support multiple branches being built and deployed in the same Namesapces, heml Charts need to be able to run in the same Namespace using helm `Release`.
+
+For example where `foo` is the release name:
 ```bash
 helm template --name-template=foo ...
 helm install foo ...
 ```
-A real life example of two Releases of the same chart in the same namespace can be tested using:
+A real life example of two Releases of the same chart in the same namespace can be tested using the cli:
 ```bash
 helm template --name-template=foo -f chart/values.yaml chart | oc apply -f- --dry-run --validate
 helm template --name-template=bar -f chart/values.yaml chart | oc apply -f- --dry-run --validate
 ```
 
-In argocd the release name is specified as:
+In argocd the Release name is specified as:
 ```yaml
   spec:
     helm:
