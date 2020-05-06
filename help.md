@@ -47,7 +47,7 @@ So, an example workflow for `pet-battle-api` uses a helm chart repository in nex
 6. uploads the helm chart to nexus helm repository
 7. syncs the argocd application using the updated helm chart
 
-To support multiple branches being built and deployed in the same Namesapces, heml Charts need to be able to run in the same Namespace using helm `Release`.
+To support multiple branches being built and deployed in the same Namespaces, heml Charts need to be able to run in the same Namespace using helm `Release`.
 
 For example where `foo` is the release name:
 ```bash
@@ -101,5 +101,11 @@ metadata:
   name: {{ include "pet-battle-api.fullname" . }}
 ```
 
-Other things:
+Other Things:
 - [ ] Think some more about supporting umbrealla Charts (have chart dependencies) that may have multiple image versions, especially where Release is not adhered to in naming kube objects (namespace isolation only in these cases ?)
+
+Broken Things:
+- [ ] Chart SEMVER in Jenkinsfile
+- [ ] Nexus image & helm support if nexus helm repository in use - https://github.com/sonatype-nexus-community/nexus-kubernetes-openshift/issues/46
+- [ ] Custom java mvn slave - is custom with mvn3.6, jdk1.11 cause there is no rh-maven36 in centos, base image - UBI8 has mvn3.5.4
+- [ ] ArgoCD RBAC - apiKey for admin user
