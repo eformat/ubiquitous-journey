@@ -64,3 +64,4 @@ applications:
   destination: *staging_ns
   source_ref: 1.0.0
   ignore_differences: *ignore_differences
+- source_ref: 1.0-SNAPSHOT
