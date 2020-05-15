@@ -14,9 +14,8 @@ pet_battle: &front_end_values
   # image_repository: image-registry.openshift-image-registry.svc:5000
   # image_name: pet-battle
   # image_namespace: labs-ci-cd
-  config_map: "'http://pet-battle-api-ds-test.apps.s43.core.rht-labs.com'"
-pet_battle_api: &api_values
-  appName: pet-battle-api
+  config_map: "'http://pet-battle-api-labs-dev.apps.hivec.sandbox1559.opentlc.com/'"
+
 ##############
 # Argo Ignore Differences
 #############
@@ -28,6 +27,7 @@ ignore_differences: &ignore_differences
     - /spec/template/spec/containers/0/image
     - /spec/triggers/0/imageChangeParams/lastTriggeredImage
     - /spec/triggers/1/imageChangeParams/lastTriggeredImage
+
 ##############
 # Argo App of Apps declaration
 #############
