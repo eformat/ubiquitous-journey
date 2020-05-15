@@ -3,7 +3,6 @@ destination_test: &test_ns labs-test
 destination_staging: &staging_ns labs-staging
 helm_repository: &helm_repo "https://nexus-ds-ci-cd.apps.hivec.sandbox1559.opentlc.com/repository/helm-charts/"
 destination: &test_ns labs-test
-
 ##############
 # Application Custom Values
 #############
@@ -15,7 +14,6 @@ pet_battle: &front_end_values
   # image_name: pet-battle
   # image_namespace: labs-ci-cd
   config_map: "'http://pet-battle-api-labs-dev.apps.hivec.sandbox1559.opentlc.com/'"
-
 ##############
 # Argo Ignore Differences
 #############
@@ -27,7 +25,6 @@ ignore_differences: &ignore_differences
     - /spec/template/spec/containers/0/image
     - /spec/triggers/0/imageChangeParams/lastTriggeredImage
     - /spec/triggers/1/imageChangeParams/lastTriggeredImage
-
 ##############
 # Argo App of Apps declaration
 #############
@@ -56,7 +53,7 @@ applications:
   chart_name: pet-battle # probs over written in jenkins
   sync_policy_automated: true
   destination: *staging_ns
-  source_ref: "1.0.0" # probs over written in jenkins
+  source_ref: 1.0-SNAPSHOT
   ignore_differences: *ignore_differences
 - name: pet-battle-api
   enabled: true
