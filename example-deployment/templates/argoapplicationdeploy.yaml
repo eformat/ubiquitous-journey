@@ -9,6 +9,8 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
   name: {{ $app.name }}
+  labels:
+    rht-labs.com/uj: catz  
 spec:
   destination:
     namespace: {{ $app.destination | default "labs-ci-cd" }}
