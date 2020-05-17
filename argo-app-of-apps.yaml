@@ -6,9 +6,9 @@ applications:
   - name: ubiquitous-journey
     destination: labs-ci-cd
     enabled: true
-    source: https://github.com/rht-labs/ubiquitous-journey.git
+    source: https://github.com/eformat/ubiquitous-journey.git
     source_path: ubiquitous-journey/
-    source_ref: master
+    source_ref: testing/nexus
     sync_policy_automated: false
     helm_values:
       - values-tooling.yaml
