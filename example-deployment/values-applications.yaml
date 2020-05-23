@@ -51,7 +51,7 @@ applications:
   chart_name: pet-battle-api
   sync_policy_automated: true
   destination: *test_ns
-  source_ref: 1.0-SNAPSHOT
+  source_ref: 1.0.0
   ignore_differences: *ignore_differences
 - name: pet-battle
   enabled: true
