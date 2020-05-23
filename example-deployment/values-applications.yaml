@@ -50,7 +50,7 @@ applications:
   source_path: ""
   sync_policy_automated: true
   destination: *test_ns
-  source_ref: master
+  source_ref: 1.0-SNAPSHOT
   ignore_differences: *ignore_differences
   # Staging App deployment 
 - name: pet-battle
