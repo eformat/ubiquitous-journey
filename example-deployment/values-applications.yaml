@@ -46,11 +46,12 @@ applications:
   ignore_differences: *ignore_differences
 - name: test-pet-battle-api
   enabled: true
-  source: https://github.com/eformat/pet-battle-api.git
+  source: *helm_repo
   source_path: ""
+  chart_name: pet-battle-api
   sync_policy_automated: true
   destination: *test_ns
-  source_ref: 1.0-SNAPSHOT
+  source_ref: 1.0.0
   ignore_differences: *ignore_differences
   # Staging App deployment 
 - name: pet-battle
