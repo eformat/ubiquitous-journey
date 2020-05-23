@@ -35,14 +35,14 @@ ignore_differences: &ignore_differences
 # Argo App of Apps declaration
 #############
 applications:
-- name: test-pet-battle # Test App deployment 
+- name: test-pet-battle
   enabled: true
-  source: *helm_repo
-  source_path: ""
-  chart_name: pet-battle # probs over written in jenkins
+  source: https://github.com/springdo/pet-battle.git
+  source_path: chart
   sync_policy_automated: true
   destination: *test_ns
-  source_ref: 1.0.0
+  source_ref: master
+  values: *front_end_values
   ignore_differences: *ignore_differences
 - name: test-pet-battle-api
   enabled: true
@@ -53,15 +53,14 @@ applications:
   destination: *test_ns
   source_ref: 1.0.0
   ignore_differences: *ignore_differences
-  # Staging App deployment 
 - name: pet-battle
   enabled: true
-  source: *helm_repo
-  source_path: ""
-  chart_name: pet-battle # probs over written in jenkins
+  source: https://github.com/springdo/pet-battle.git
+  source_path: chart
   sync_policy_automated: true
   destination: *staging_ns
-  source_ref: "1.0.0" # probs over written in jenkins
+  source_ref: master
+  values: *front_end_values
   ignore_differences: *ignore_differences
 - name: pet-battle-api
   enabled: true
