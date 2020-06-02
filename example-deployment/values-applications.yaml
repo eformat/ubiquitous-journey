@@ -1,7 +1,7 @@
 # Over rides for default values in Helm Charts
 destination_test: &test_ns labs-test
 destination_staging: &staging_ns labs-staging
-helm_repository: &helm_repo "https://nexus-labs-ci-cd.apps.hivec.sandbox1559.opentlc.com/repository/helm-charts/"
+helm_repository: &helm_repo "https://nexus-labs-ci-cd.apps.hivec.sandbox545.opentlc.com/repository/helm-charts/"
 destination: &test_ns labs-test
 ##############
 # Application Custom Values
@@ -9,10 +9,10 @@ destination: &test_ns labs-test
 # toggle between versions of the app by setting the tag to grey / purple or latest
 pet_battle_test: &front_end_values_test
   app_tag: latest
-  config_map: "'http://test-pet-battle-api-labs-test.apps.hivec.sandbox1559.opentlc.com/'"
+  config_map: "'http://test-pet-battle-api-labs-test.apps.hivec.sandbox545.opentlc.com/'"
 pet_battle: &front_end_values
   app_tag: latest
-  config_map: "'http://pet-battle-api-labs-staging.apps.hivec.sandbox1559.opentlc.com/'"
+  config_map: "'http://pet-battle-api-labs-staging.apps.hivec.sandbox545.opentlc.com/'"
 pet_battle_api: &api_values
   appName: pet-battle-api
   image_repository: quay.io

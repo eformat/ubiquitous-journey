@@ -224,7 +224,7 @@ mattermost_values: &mattermost_values
 owncloud_values: &owncloud_values
   route:
     enabled: true
-  hostname: owncloud.apps.hivec.sandbox1559.opentlc.com
+  hostname: owncloud.apps.hivec.sandbox545.opentlc.com
 
 ##############
 # 🐙 Argo Ignore Differences
