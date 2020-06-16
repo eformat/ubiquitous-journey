@@ -7,14 +7,14 @@ destination: &ci_cd_ns labs-ci-cd
 jenkins_values: &jenkins_values
   source_secrets:
     - name: git-auth
-      username: idm-sa
-      password: thisisdefinitelymypassword
+      username: eformat
+      password: Lionred99_
     - name: nexus-password
       username: admin
       password: admin123
     - name: argocd-token
       username: token
-      password: aaa.bbb.ccc
+      password: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNTljYzdmYy03NGEwLTQ2MmMtYmI4MS1lMDgxZTVhZTNhODkiLCJpYXQiOjE1OTIyNzUxMzAsImlzcyI6ImFyZ29jZCIsIm5iZiI6MTU5MjI3NTEzMCwic3ViIjoiYWRtaW4ifQ.0thc9kUvr0HH-cCg5hqlNtiuf0fA6l1j6GGZaeM44L0
   buildconfigs:
     - name: "jenkins"
       build_trigger_secret: "shhhhh-this-is-my-super-duper-secret123-shhhhh"
@@ -131,6 +131,7 @@ wekan_values: &wekan_values
     enabled: false
   route:
     enabled: true
+  root_url: https://wekan-labs-ci-cd.apps.r2r.vic.apac.rht-labs.com
 
 ##############
 # 🛎 Mattermost Custom Values
