@@ -14,7 +14,7 @@ jenkins_values: &jenkins_values
       password: admin123
     - name: argocd-token
       username: token
-      password: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNTljYzdmYy03NGEwLTQ2MmMtYmI4MS1lMDgxZTVhZTNhODkiLCJpYXQiOjE1OTIyNzUxMzAsImlzcyI6ImFyZ29jZCIsIm5iZiI6MTU5MjI3NTEzMCwic3ViIjoiYWRtaW4ifQ.0thc9kUvr0HH-cCg5hqlNtiuf0fA6l1j6GGZaeM44L0
+      password: password 
   buildconfigs:
     - name: "jenkins"
       build_trigger_secret: "shhhhh-this-is-my-super-duper-secret123-shhhhh"
