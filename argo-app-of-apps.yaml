@@ -8,7 +8,7 @@ applications:
     enabled: true
     source: https://github.com/eformat/ubiquitous-journey.git
     source_path: ubiquitous-journey/
-    source_ref: master
+    source_ref: feature/jenkins-slave-rework
     sync_policy_automated: false
     helm_values:
       - values-tooling.yaml
