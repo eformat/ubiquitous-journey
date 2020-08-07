@@ -242,6 +242,7 @@ applications:
   - name: jenkins
     enabled: true
     source: https://eformat.github.io/helm-charts
+    chart_name: jenkins
     source_path: ""
     source_ref: "0.0.20"
     sync_policy:
