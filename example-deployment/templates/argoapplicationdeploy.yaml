@@ -9,7 +9,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
   name: {{ $app.name }}
   labels:
-    rht-labs.com/uj: catz  
+    petbattle.app/uj: ubiquitous-journey
 spec:
   destination:
     namespace: {{ $app.destination | default "labs-ci-cd" }}
