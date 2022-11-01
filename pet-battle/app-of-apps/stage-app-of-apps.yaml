@@ -4,7 +4,7 @@ applications:
     name: pet-battle-test-app-of-apps
     enabled: true
     source: https://github.com/eformat/ubiquitous-journey
-    source_ref: main
+    source_ref: app-of-apps
     source_path: pet-battle/app-of-apps/test
     no_helm: true
     directory:
