@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: keycloak-stage
+  labels:
+    app.kubernetes.io/instance: keycloak
+spec:
+  destination:
+    namespace: ateam-stage
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      releaseName: keycloak
+      values: |
+        app_domain: apps.cluster-tmnht.tmnht.sandbox526.opentlc.com
+    path: keycloak
+    repoURL: https://github.com/petbattle/pet-battle-infra
+    targetRevision: "main"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=true

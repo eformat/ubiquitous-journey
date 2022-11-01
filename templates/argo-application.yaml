@@ -49,6 +49,10 @@ spec:
     {{- if .source_path }}
     path: {{ .source_path | default "." }}
     {{- end }}
+{{- if .directory }}
+    directory:
+{{- toYaml .directory | nindent 6 }}
+{{- end }}
     repoURL: {{ $source }}
     targetRevision: {{ .source_ref | default "main" | quote }}
     {{- if not .source_path }}

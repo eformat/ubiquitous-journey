@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: pet-battle-stage
+  labels:
+    app.kubernetes.io/instance: pet-battle
+spec:
+  destination:
+    namespace: ateam-stage
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      releaseName: pet-battle
+      values: |
+        config_map: '{ "catsUrl": "https://pet-battle-api-ateam-stage.apps.cluster-tmnht.tmnht.sandbox526.opentlc.com",
+          "tournamentsUrl": "https://pet-battle-tournament-ateam-stage.apps.cluster-tmnht.tmnht.sandbox526.opentlc.com",
+          "matomoUrl": "https://matomo-ateam-ci-cd.apps.cluster-tmnht.tmnht.sandbox526.opentlc.com/",
+          "keycloak": { "url": "https://keycloak-ateam-stage.apps.cluster-tmnht.tmnht.sandbox526.opentlc.com/auth/",
+          "realm": "pbrealm", "clientId": "pbclient", "redirectUri": "http://localhost:4200/tournament",
+          "enableLogging": true } }'
+        image_version: latest
+    repoURL: https://petbattle.github.io/helm-charts
+    targetRevision: "1.0.6"
+    chart: pet-battle
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=true

@@ -1,0 +1,11 @@
+# our app-of-apps definition
+applications:
+  pet-battle-test-app-of-apps:
+    name: pet-battle-test-app-of-apps
+    enabled: true
+    source: https://github.com/eformat/ubiquitous-journey
+    source_ref: main
+    source_path: pet-battle/app-of-apps/test
+    no_helm: true
+    directory:
+      include: "*.yaml"
