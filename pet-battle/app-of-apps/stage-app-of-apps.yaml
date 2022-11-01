@@ -5,7 +5,7 @@ applications:
     enabled: true
     source: https://github.com/eformat/ubiquitous-journey
     source_ref: app-of-apps
-    source_path: pet-battle/app-of-apps/test
+    source_path: pet-battle/app-of-apps/stage
     no_helm: true
     directory:
       include: "*.yaml"
